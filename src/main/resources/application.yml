@@ -1,0 +1,6 @@
+zuul:
+  routes:
+    Student:
+      url: http://localhost:8090
+    Teacher:
+      url: http://localhost:8081

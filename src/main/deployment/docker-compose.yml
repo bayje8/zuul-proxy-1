@@ -1,0 +1,30 @@
+version: "3.5"
+services:
+  student:
+    image: myapp/docker-1
+    ports:
+      - "8090:8090"
+    deploy:
+      replicas: 2
+    networks:    
+      - zuultest
+  teacher:  
+    image: myapp/docker-2
+    ports:
+      - "8081:8081"
+    networks:    
+      - zuultest
+    depends_on:
+      - student  
+  proxy:
+    image: myapp/zuulproxy
+    ports:
+      - "8084:8084"
+    networks:
+      - zuultest
+    depends_on:
+      - student
+      - teacher
+networks:
+  zuultest:
+  
